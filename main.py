@@ -1,16 +1,21 @@
-# This is a sample Python script.
+from classes import course
+from non_member_methods import generate_early_schedule
+def main():
+    possible_courses = []
+    course_code = "not empty"
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    while course_code != "":
+        course_code = input("Enter course code, or enter to finish: ")
 
+        if course_code == "":
+            break
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+        end_time = int(input("Enter this section's end time: "))
+        new_course = course(course_code, end_time = end_time)
+        possible_courses.append(new_course)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    completed_schedule = generate_early_schedule(possible_courses, 1) #TODO dont hardcode this
+    for course_instance in completed_schedule:
+        print(course_instance)
+if __name__ == "__main__":
+    main()

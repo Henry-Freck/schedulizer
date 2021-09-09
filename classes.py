@@ -34,8 +34,11 @@ class course:
         self.start_time = 0  #TODO find a better way to declare this with no value
         self.end_time = 0  #TODO same here
 
-    def __init__(self, code, days, start_time, end_time):
+    def __init__(self, code = "0000", days = "", start_time = 0, end_time = 0):
             self.code = code
             self.days = days
             self.start_time = start_time
             self.end_time = end_time
+
+    def __str__(self):
+        return (self.code + " from " + str(self.start_time) + " to " + str(self.end_time))
