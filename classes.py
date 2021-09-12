@@ -4,23 +4,16 @@ from non_member_methods import stringify_time
 
 class schedule:
 
-    #TODO should schedule contain a set of courses, a list of courses or both
-
-    #initialize a empty schedule
-    def __init__(self):
-        self.courses = set()
-
-    #initialize a schedule from a set of courses
-    def __init__(self, course_set):
-        self.courses = course_set
-
-    #initialize a schedule from a set of courses
+    #initialize a schedule from a list of courses
     def __init__(self, course_list):
-        self.courses = set(course_list)
+        self.courses = course_list
 
-    def add_course(self, course):
-        #TODO complete based on self.courses data structure
-        pass
+    def __str__(self):
+        schedule_string_list = ["\n"]
+        for course in self.courses:
+            schedule_string_list.append(str(course)+ "\n")
+        return "".join(schedule_string_list)
+
 
 class course:
 

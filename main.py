@@ -3,17 +3,11 @@ from non_member_methods import generate_early_schedule
 from non_member_methods import generate_late_schedule
 from non_member_methods import convert_time
 from non_member_methods import is_valid_time
+from classes import schedule
 
-def main():
+def course_input():
     possible_courses = []
     course_code = "not empty"
-
-    schedule_timing = input("Enter the optimal timing of your schedule (early/late), defaults to early: ")
-    num_courses = int(input("How many courses would you like in the final schedule?: "))
-
-#taking in imput for all course possibilities
-#TODO get info from the registrar to make this easier
-
     #get course code, then loop thru day/time input
     while course_code != "":
         course_code = input("Enter course code, or enter to finish: ")
@@ -98,15 +92,22 @@ def main():
 
             new_course = course(course_code, start_time=start_time, end_time=end_time, days = meeting_days_set)
             possible_courses.append(new_course)
+    return possible_courses
+
+
+def main():
+    schedule_timing = input("Enter the optimal timing of your schedule (early/late), defaults to early: ")
+    num_courses = int(input("How many courses would you like in the final schedule?: "))
+
+    possible_courses = course_input()
 
     if schedule_timing.lower() == "late" or schedule_timing.lower() == "l":
-        completed_schedule = generate_late_schedule(possible_courses, num_courses)
+        completed_course_list = generate_late_schedule(possible_courses, num_courses)
     else:
-        completed_schedule = generate_early_schedule(possible_courses, num_courses)
+        completed_course_list = generate_early_schedule(possible_courses, num_courses)
 
-    print()
-    for course_instance in completed_schedule:
-        print(course_instance)
+    completed_schedule = schedule(completed_course_list)
+    print(completed_schedule)
 
 if __name__ == "__main__":
     main()
